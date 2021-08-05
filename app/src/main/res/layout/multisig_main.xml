@@ -49,13 +49,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:drawablePadding="5dp"
                     android:gravity="center"
                     android:text="@string/multisig_legacy"
                     android:textColor="@color/white"
-                    android:drawableEnd="@drawable/arrow_right"
-                    android:drawableTint="@color/colorAccent"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    app:drawableEndCompat="@drawable/arrow_right"
+                    app:drawableTint="@color/colorAccent" />
             </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -78,14 +79,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="16dp"
-                android:drawableEnd="@drawable/arrow_right"
-                android:drawableTint="@color/colorAccent"
+                android:drawablePadding="5dp"
                 android:ellipsize="middle"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/arrow_right"
+                app:drawableTint="@color/colorAccent" />
         </FrameLayout>
 
 
