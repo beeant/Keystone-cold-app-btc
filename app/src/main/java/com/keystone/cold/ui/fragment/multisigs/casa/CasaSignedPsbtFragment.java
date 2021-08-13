@@ -184,21 +184,31 @@ public class CasaSignedPsbtFragment extends BaseFragment<SignedTxBinding> {
 
     }
 
-    protected void displaySignResult(CasaSignature casaSignature) {
-        mBinding.txDetail.txIdInfo.setVisibility(View.GONE);
-        mBinding.txDetail.arrowDown.setVisibility(View.GONE);
-        mBinding.txDetail.scanInfo.setVisibility(View.GONE);
-        mBinding.txDetail.export.setVisibility(View.GONE);
+    private boolean isTestnet(CasaSignature casaSignature) {
+        try {
+            String firstOutputAddress = new JSONArray(casaSignature.getTo()).getJSONObject(0).getString("address");
+            return firstOutputAddress.startsWith("2");
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    protected void displaySignResult(CasaSignature casaSignature) {
+        mBinding.txDetail.txIdInfo.setVisibility(View.VISIBLE);
         mBinding.txDetail.dynamicQrcodeLayout.qrcode.setVisibility(View.VISIBLE);
-        mBinding.txDetail.exportToSdcardHint.setVisibility(View.VISIBLE);
+        mBinding.txDetail.dynamicQrcodeLayout.hint.setVisibility(View.VISIBLE);
+        mBinding.txDetail.export.setVisibility(View.VISIBLE);
+        if (isTestnet(casaSignature)) {
+            mBinding.txDetail.network.setVisibility(View.VISIBLE);
+            mBinding.txDetail.networkText.setText(getString(R.string.testnet));
+        }
         byte[] psbtBytes = Base64.decode(casaSignature.getSignedHex());
         mBinding.txDetail.dynamicQrcodeLayout.qrcode.setData(new CryptoPSBT(psbtBytes).toUR().toString());
-        mBinding.txDetail.dynamicQrcodeLayout.hint.setVisibility(View.GONE);
         mBinding.txDetail.qrcodeLayout.qrcode.setVisibility(View.GONE);
         mBinding.txDetail.broadcastGuide.setVisibility(View.GONE);
-        mBinding.txDetail.export.setVisibility(View.GONE);
-        mBinding.txDetail.exportToSdcardHint.setVisibility(View.INVISIBLE);
+        mBinding.txDetail.arrowDown.setVisibility(View.GONE);
+        mBinding.txDetail.scanInfo.setVisibility(View.GONE);
+        mBinding.txDetail.exportToSdcardHint.setVisibility(View.GONE);
     }
 
 }
