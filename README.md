@@ -35,7 +35,7 @@ The hardware wallet application was programmed with Java language. The transacti
     git clone git@github.com:KeystoneHQ/Keystone-cold-app-btc.git --recursive
 
 ## Build
-    cd Keystone-cold-app
+    cd Keystone-cold-app-btc
     ./gradlew assembleVault_v2Release
 You can also build with IDEs, such as `Android Studio`,`intelliJ`.
 
